@@ -8,20 +8,10 @@
   </stache-page-summary>
   
   <ng-content select="sky-demo-page-example"></ng-content>
-  
-  <div class="sky-demo-page-tab-content">
-  <sky-tabset>
-    <sky-tab tabHeading="Code">
-      <ng-content select="sky-demo-page-properties"></ng-content>
-      <ng-content select="sky-demo-page-code"></ng-content>
-    </sky-tab>
-    <sky-tab tabHeading="Accessibility">
-      <ng-content select="sky-demo-page-accessibility"></ng-content>
-    </sky-tab>
-    <sky-tab tabHeading="UX guidelines">
-      <ng-content select="sky-demo-page-guidelines"></ng-content>
-    </sky-tab>
-  </sky-tabset>
-  </div>
+  <ng-content select="sky-demo-page-properties"></ng-content>
+  <ng-content select="sky-demo-page-code"></ng-content>
+  <ng-content select="sky-demo-page-accessibility"></ng-content>
+  <ng-content select="sky-demo-page-guidelines"></ng-content>
+
     
 </stache>
