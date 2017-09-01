@@ -4,7 +4,8 @@
       'sky-btn-tab-wizard': tabStyle === 'wizard',
       'sky-btn-tab-selected': active,
       'sky-btn-tab-disabled': disabled,
-      'sky-tab-btn-closeable': allowClose
+      'sky-tab-btn-closeable': allowClose,
+      'sky-btn-tab-vertical': orientation === 'vertical'
     }"
     tabindex="0"
     (keydown)="keyDownFunction($event)"
@@ -29,3 +30,4 @@
     <i class="fa fa-remove"></i>
   </button>
 </a>
+<ng-content></ng-content>

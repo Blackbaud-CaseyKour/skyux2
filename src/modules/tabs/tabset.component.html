@@ -1,6 +1,6 @@
 <div
-    class="sky-tabset" role="tablist"
-    [ngClass]="'sky-tabset-mode-' + tabDisplayMode + ' sky-tabset-style-' + tabStyle"
+    role="tablist"
+    [ngClass]="getClasses()"
     (window:resize)="windowResize()"
 >
   <span class="sky-tabset-dropdown">
@@ -12,19 +12,52 @@
     >
     </sky-tab-dropdown>
   </span>
-  <span class="sky-tabset-tabs">
-    <sky-tab-button
-        *ngFor="let tab of tabs; let i = index"
-        [tabHeading]="tab.tabHeading"
-        [tabHeaderCount]="tab.tabHeaderCount"
+
+  <div *ngIf="isVertical()" class="sky-tabset-vertical">
+    <div> 
+      <sky-tab-button
+        *ngFor="let group of tabGroups();"
+        [tabHeading]="group.tabHeading"
+        [tabHeaderCount]="group.tabHeaderCount"
         [tabStyle]="tabStyle"
-        [active]="tab.active"
-        [allowClose]="tab.allowClose"
-        [disabled]="tab.disabled"
-        (tabClick)="selectTab(tab)"
-        (closeClick)="tabCloseClick(tab)"
+        [active]="group.active"
+        [allowClose]="group.allowClose"
+        [disabled]="group.disabled"
+        [orientation]="orientation"
+        (tabClick)="selectTab(group)"
+        (closeClick)="tabCloseClick(group)"
+      >
+        <sky-tab-button
+          *ngFor="let subTab of subTabs(group);"
+          [tabHeading]="subTab.tabHeading"
+          [tabHeaderCount]="subTab.tabHeaderCount"
+          [tabStyle]="tabStyle"
+          [active]="subTab.active"
+          [allowClose]="subTab.allowClose"
+          [disabled]="subTab.disabled"
+          [orientation]="orientation"
+          (tabClick)="selectTab(subTab)"
+          (closeClick)="tabCloseClick(subTab)"
+        >
+        </sky-tab-button>
+      </sky-tab-button>
+    </div>
+    <div *ngIf="isVertical()" #verticalTabContent></div>
+  </div>
+  <div *ngIf="!isVertical()" class="sky-tabset-tabs"> 
+    <sky-tab-button
+      *ngFor="let tab of tabs; let i = index"
+      [tabHeading]="tab.tabHeading"
+      [tabHeaderCount]="tab.tabHeaderCount"
+      [tabStyle]="tabStyle"
+      [active]="tab.active"
+      [allowClose]="tab.allowClose"
+      [disabled]="tab.disabled"
+      [orientation]="orientation"
+      (tabClick)="selectTab(tab)"
+      (closeClick)="tabCloseClick(tab)"
     ></sky-tab-button>
-  </span>
+  </div>
   <span class="sky-tabset-btns">
     <button
         type="button"
@@ -46,4 +79,4 @@
     </button>
   </span>
 </div>
-<ng-content></ng-content>
+<ng-content *ngIf="!isVertical()"></ng-content>

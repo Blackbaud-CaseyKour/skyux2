@@ -12,7 +12,9 @@ import {
   QueryList,
   ChangeDetectorRef,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  ViewChildren,
+  ViewChild
 } from '@angular/core';
 
 import { SkyTabComponent } from './tab.component';
@@ -42,10 +44,16 @@ export class SkyTabsetComponent
   @Output()
   public activeChange = new EventEmitter<any>();
 
+  @Input()
+  public orientation: string = 'horizontal';
+
   public tabDisplayMode = 'tabs';
 
   @ContentChildren(SkyTabComponent)
   public tabs: QueryList<SkyTabComponent>;
+
+  @ViewChild('verticalTabContent')
+  public content: ElementRef;
 
   constructor(
     private tabsetService: SkyTabsetService,
@@ -92,6 +100,7 @@ export class SkyTabsetComponent
         // https://github.com/angular/angular/issues/6005
         setTimeout(() => {
           if (newActiveIndex !== this.active) {
+            this.moveActiveTabContent();
             this.active = newActiveIndex;
             this.activeChange.emit(newActiveIndex);
           }
@@ -121,7 +130,61 @@ export class SkyTabsetComponent
     this.tabsetService.destroy();
   }
 
+  public isVertical() {
+    return this.orientation === 'vertical';
+  }
+
+  public nonGroupTabs() {
+    let groups = this.tabs.filter(tab => tab.isGroup());
+
+    if (groups && groups.length > 0) {
+      let subTabs: SkyTabComponent[] =
+        groups
+          .map(tab => tab.tabs.toArray())
+          .reduce((prev, current) => prev.concat(current))
+          .filter(tab => !tab.isGroup());
+
+      return subTabs;
+    } else {
+      return undefined;
+    }
+  }
+
+  public tabGroups() {
+    let groups = this.tabs.filter(tab => tab.isGroup());
+    return groups;
+  }
+
+  public subTabs(item: SkyTabComponent) {
+    if (item && item.tabs) {
+      return item.tabs.toArray().slice(1, item.tabs.length);
+    } else {
+      return undefined;
+    }
+  }
+
+  public getClasses() {
+    const tabSetModeClass = `sky-tabset-mode-${this.tabDisplayMode}`;
+    const tabStyleClass = `sky-tabset-style-${this.tabStyle}`;
+
+    return {
+      tabSetModeClass: true,
+      tabStyleClass: true,
+      'sky-tabset': !this.isVertical(),
+      'sky-tabset-vertical': this.isVertical()
+    };
+  }
+
   private updateDisplayMode(currentOverflow: boolean) {
     this.tabDisplayMode = currentOverflow ? 'dropdown' : 'tabs';
+  }
+
+  private moveActiveTabContent() {
+    // add active tab content to side div
+    let activeContent = this.tabsetService.activeTabContent();
+
+    if (activeContent) {
+      this.content.nativeElement.appendChild(activeContent.nativeElement);
+    }
   }
 }

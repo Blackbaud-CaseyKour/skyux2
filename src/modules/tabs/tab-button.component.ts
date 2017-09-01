@@ -2,7 +2,9 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -28,6 +30,9 @@ export class SkyTabButtonComponent {
 
   @Input()
   public disabled: boolean;
+
+  @Input()
+  public orientation: string = 'horizontal';
 
   @Output()
   public tabClick = new EventEmitter<any>();

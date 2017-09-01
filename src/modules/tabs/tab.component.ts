@@ -7,7 +7,11 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   OnChanges,
-  SimpleChanges
+  SimpleChanges,
+  ContentChildren,
+  QueryList,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 import { SkyTabsetService } from './tabset.service';
@@ -31,6 +35,12 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
 
   @Input()
   public active: boolean;
+
+  @ContentChildren(SkyTabComponent)
+  public tabs: QueryList<SkyTabComponent>;
+
+  @ViewChild('tabContentWrapper')
+  public tabContent: ElementRef;
 
   public get allowClose(): boolean {
     return this.close.observers.length > 0;
@@ -73,5 +83,9 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
 
   public ngOnDestroy() {
     this.tabsetService.destroyTab(this);
+  }
+
+  public isGroup(): boolean {
+    return this.tabs.length > 1;
   }
 }

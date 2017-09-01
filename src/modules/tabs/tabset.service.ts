@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 
 import { SkyTabComponent } from './tab.component';
 
@@ -73,6 +73,18 @@ export class SkyTabsetService {
   public destroy() {
     this.tabs.complete();
     this.activeIndex.complete();
+  }
+
+  public activeTabContent(): ElementRef {
+    let activeTab = this.tabs.value.find(tab => {
+      return !tab.isGroup() && tab.tabIndex === this.activeIndex.value;
+    });
+
+    if (activeTab) {
+      return activeTab.tabContent;
+    } else {
+      return undefined;
+    }
   }
 
   private getLastTabIndex(tabs: Array<SkyTabComponent>) {
