@@ -6,13 +6,14 @@
     'sky-no-outline': !outline, 
     'sky-outline': outline 
   }"
-  (click)="activateTabFromClick()"
-  (keyup.enter)="activateTab()"
-  (keyup)="tabPress($event)"
+  (click)="tabClicked()"
   tabIndex="0"
-  >
-  <div>{{ tabHeading }}</div>
-  </div>
+>
+(click)="activateTabFromClick()"
+(keyup.enter)="activateTab()"
+(keyup)="tabPress($event)"
+  <div>{{ tabHeading }} and active = {{ active }} index = {{ tabIndex }}</div>
+</div>
   <div #tabContentWrapper>
   <div [ngClass]="{'sky-vertical-tab-hidden': !active, 'sky-vertical-tab-visible': active }">
     <ng-content></ng-content>

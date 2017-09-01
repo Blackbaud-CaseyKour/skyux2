@@ -44,6 +44,8 @@
 .sky-tab-group-content {
   overflow: hidden;
   @include sky-border(light, top);
+  display: flex;
+  flex-direction: column;
 }
 
 :host /deep/ .sky-tab-chevron > button {

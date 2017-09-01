@@ -18,8 +18,7 @@ import { SkyTabsetService } from './tabset.service';
 
 @Component({
   selector: 'sky-tab',
-  templateUrl: './tab.component.html',
-  styleUrls: ['tab.component.scss']
+  templateUrl: './tab.component.html'
 })
 export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
   @Input()
@@ -53,6 +52,9 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
   @Output()
   public close = new EventEmitter<any>();
 
+  @Output()
+  public tabClick = new EventEmitter<SkyTabComponent>();
+
   constructor(private tabsetService: SkyTabsetService, private ref: ChangeDetectorRef) {}
 
   public ngAfterViewInit() {
@@ -60,11 +62,16 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
       this.tabsetService.addTab(this);
 
       this.tabsetService.activeIndex.subscribe((activeIndex: any) => {
+        console.warn(`active tab changed = ${activeIndex} for ${this.tabIndex}`);
+
         this.active = this.tabIndex === activeIndex;
+        console.warn(`active = ${this.active}`);
+
         this.ref.markForCheck();
       });
 
       if (this.active) {
+        console.warn('activating tab');
         this.tabsetService.activateTab(this);
       }
     });
@@ -91,5 +98,9 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
 
   public isGroup(): boolean {
     return this.tabs.length > 1;
+  }
+
+  public tabClicked() {
+    this.tabClick.emit(this);
   }
 }

@@ -22,15 +22,15 @@
     *ngIf="open"
     [@tabSlide]
   >
-    <button
+
+    <sky-tab-vertical-button 
       *ngFor="let tab of subTabs;"
-      type="button"
-      class="sky-btn"
-      (click)="selectTab(tab)"
+      [tabHeading]="tab.tabHeading"
+      [disabled]="tab.disabled"
+      [tabIndex]="tab.tabIndex"
+      (tabClick)="selectTab(tab)"
     >
-      {{ tab.tabHeading }}
-    </button>
-    <!-- <ng-content></ng-content> -->
+    </sky-tab-vertical-button>
   </div>
 </div>
   

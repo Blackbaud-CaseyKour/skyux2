@@ -83,7 +83,6 @@ export class SkyTabsetComponent
   }
 
   public selectTab(newTab: SkyTabComponent) {
-    console.warn('activating tab');
     this.tabsetService.activateTab(newTab);
   }
 
