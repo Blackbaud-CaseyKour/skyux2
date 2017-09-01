@@ -43,6 +43,20 @@
   color: $sky-text-color-action-primary;
 }
 
-.sky-tabset-vertical {
-  display: flex;
+@media (min-width: $sky-screen-sm-min) {
+  .sky-tabset-vertical {
+    display: flex;
+    max-height: 98vh;
+  }
+}
+
+.sky-tabset-vertical-content {
+  margin: 10px 0 0 10px;
+  flex-basis: 75%;
+  overflow-y: auto;
+}
+
+.sky-tabset-vertical-buttons {
+  flex-basis: 25%;
+  overflow-y: auto;
 }

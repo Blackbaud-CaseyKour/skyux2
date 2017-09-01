@@ -14,7 +14,7 @@
   </span>
 
   <div *ngIf="isVertical()" class="sky-tabset-vertical">
-    <div> 
+    <div class="sky-tabset-vertical-buttons"> 
       <sky-tab-group
         *ngFor="let group of tabGroups();"
         [groupHeading]="group.tabHeading"
@@ -34,7 +34,7 @@
 
       <!-- todo - code to support single level tabs without a group -->
     </div>
-    <div *ngIf="isVertical()" #verticalTabContent></div>
+    <div *ngIf="isVertical()" #verticalTabContent class="sky-tabset-vertical-content"></div>
   </div>
 
   <div *ngIf="!isVertical()" class="sky-tabset-tabs"> 

@@ -68,13 +68,13 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
 
   private _open: boolean = false;
   private _openBeforeTabsHidden: boolean = false;
+  private _loaded: boolean = false;
   private _ngUnsubscribe = new Subject();
 
   public get open(): boolean {
     return !this.disabled && this._open;
   }
 
-  @Input()
   public set open(value: boolean) {
     this._open = value;
   }
@@ -89,6 +89,17 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
     this.tabService.showingTabs
       .takeUntil(this._ngUnsubscribe)
       .subscribe(this.tabsShown);
+
+    this.tabService.activeIndex
+      .takeWhile(() => !this._loaded)
+      .subscribe(activeIndex => {
+        this.open = this.subMenuOpen();
+
+        if (this.subTabsHaveIndexesDefined()) {
+          this._loaded = true;
+        }
+        console.warn(`indexes defined = ${this.subTabsHaveIndexesDefined()} open = ${this.open} group ${this.groupHeading} activeIndex = ${activeIndex}`);
+      });
   }
 
   public ngOnDestroy() {
@@ -124,5 +135,13 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
     if (!tab.disabled) {
       this.tabClick.emit(tab);
     }
+  }
+
+  private loaded() {
+    return this._loaded && this.subTabsHaveIndexesDefined();
+  }
+
+  private subTabsHaveIndexesDefined() {
+    return this.subTabs && (this.subTabs.find(tab => tab.tabIndex !== undefined) !== undefined);
   }
 }

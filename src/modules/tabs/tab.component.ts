@@ -62,16 +62,11 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
       this.tabsetService.addTab(this);
 
       this.tabsetService.activeIndex.subscribe((activeIndex: any) => {
-        console.warn(`active tab changed = ${activeIndex} for ${this.tabIndex}`);
-
         this.active = this.tabIndex === activeIndex;
-        console.warn(`active = ${this.active}`);
-
         this.ref.markForCheck();
       });
 
       if (this.active) {
-        console.warn('activating tab');
         this.tabsetService.activateTab(this);
       }
     });

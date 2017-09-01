@@ -1,25 +1,3 @@
-<!-- <div 
-  *ngIf="orientation === 'vertical'"
-  class="sky-vertical-tab"
-  [ngClass]="{
-    'sky-vertical-tab-active': active, 
-    'sky-no-outline': !outline, 
-    'sky-outline': outline 
-  }"
-  (click)="tabClicked()"
-  tabIndex="0"
->
-(click)="activateTabFromClick()"
-(keyup.enter)="activateTab()"
-(keyup)="tabPress($event)"
-  <div>{{ tabHeading }} and active = {{ active }} index = {{ tabIndex }}</div>
-</div>
-  <div #tabContentWrapper>
-  <div [ngClass]="{'sky-vertical-tab-hidden': !active, 'sky-vertical-tab-visible': active }">
-    <ng-content></ng-content>
-  <div>
-</div> -->
-
 <div 
   class="sky-tab" 
   [hidden]="!active" 

@@ -172,8 +172,7 @@ export class SkyTabsetComponent
     return {
       tabSetModeClass: true,
       tabStyleClass: true,
-      'sky-tabset': !this.isVertical(),
-      'sky-tabset-vertical': this.isVertical()
+      'sky-tabset': !this.isVertical()
     };
   }
 
