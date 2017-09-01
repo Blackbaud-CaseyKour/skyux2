@@ -87,24 +87,23 @@ export class SkyTabsetComponent
     if (changes['active'] && changes['active'].currentValue !== changes['active'].previousValue) {
       this.tabsetService.activateTabIndex(this.active);
     }
-
   }
 
   public ngAfterContentInit() {
     if (this.active || this.active === 0) {
       this.tabsetService.activateTabIndex(this.active);
     }
-    this.tabsetService.activeIndex.distinctUntilChanged().subscribe((newActiveIndex) => {
-
-         // HACK: Not selecting the active tab in a timeout causes an error.
+    this.tabsetService.activeIndex.subscribe((newActiveIndex) => {
+        // HACK: Not selecting the active tab in a timeout causes an error.
         // https://github.com/angular/angular/issues/6005
         setTimeout(() => {
           if (newActiveIndex !== this.active) {
-            this.moveActiveTabContent();
             this.active = newActiveIndex;
             this.activeChange.emit(newActiveIndex);
           }
         });
+
+        this.moveActiveTabContent();
     });
   }
 
@@ -180,11 +179,12 @@ export class SkyTabsetComponent
   }
 
   private moveActiveTabContent() {
-    // add active tab content to side div
-    let activeContent = this.tabsetService.activeTabContent();
-
-    if (activeContent) {
-      this.content.nativeElement.appendChild(activeContent.nativeElement);
+    if (this.isVertical()) {
+      // add active tab content to side div
+      let activeContent = this.tabsetService.activeTabContent();
+      if (activeContent) {
+        this.content.nativeElement.appendChild(activeContent.nativeElement);
+      }
     }
   }
 }
