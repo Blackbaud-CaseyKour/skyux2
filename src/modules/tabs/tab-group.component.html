@@ -1,0 +1,36 @@
+<div class="sky-tab-group-container">
+  <div
+    class="sky-tab-group-header" 
+    [ngClass]="{'sky-tab-group-header-sub-open': subMenuOpen()}"
+    (click)="toggleMenuOpen()"
+    (keyup.enter)="toggleMenuOpen()"
+    [tabIndex]="tabIndex()"
+  >
+    {{ groupHeading }}
+    <sky-chevron 
+      class="sky-tab-chevron"
+      [direction]="open ? 'up' : 'down'"
+      [disabled]="disabled"
+      (directionChange)="toggleMenuOpen()"
+      (keyup.enter)="$event.stopPropagation()"
+      [tabIndex]="-1"
+    >
+    </sky-chevron>
+  </div>
+  <div
+    class="sky-tab-group-content"
+    *ngIf="open"
+    [@tabSlide]
+  >
+    <button
+      *ngFor="let tab of subTabs;"
+      type="button"
+      class="sky-btn"
+      (click)="selectTab(tab)"
+    >
+      {{ tab.tabHeading }}
+    </button>
+    <!-- <ng-content></ng-content> -->
+  </div>
+</div>
+  

@@ -8,8 +8,10 @@ import { SkyTabDropdownComponent } from './tab-dropdown.component';
 import { SkyTabComponent } from './tab.component';
 import { SkyTabsetComponent } from './tabset.component';
 import { SkyTabsetNavButtonComponent } from './tabset-nav-button.component';
+import { SkyTabGroupComponent } from './tab-group.component';
 
 import { SkyResourcesModule } from '../resources';
+import { SkyChevronModule } from './../chevron/chevron.module';
 
 @NgModule({
   declarations: [
@@ -17,17 +19,20 @@ import { SkyResourcesModule } from '../resources';
     SkyTabComponent,
     SkyTabDropdownComponent,
     SkyTabsetComponent,
-    SkyTabsetNavButtonComponent
+    SkyTabsetNavButtonComponent,
+    SkyTabGroupComponent
   ],
   imports: [
     CommonModule,
     SkyDropdownModule,
-    SkyResourcesModule
+    SkyResourcesModule,
+    SkyChevronModule
   ],
   exports: [
     SkyTabComponent,
     SkyTabsetComponent,
-    SkyTabsetNavButtonComponent
+    SkyTabsetNavButtonComponent,
+    SkyTabGroupComponent
   ]
 })
 export class SkyTabsModule { }

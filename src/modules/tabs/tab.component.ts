@@ -18,7 +18,8 @@ import { SkyTabsetService } from './tabset.service';
 
 @Component({
   selector: 'sky-tab',
-  templateUrl: './tab.component.html'
+  templateUrl: './tab.component.html',
+  styleUrls: ['tab.component.scss']
 })
 export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
   @Input()
@@ -35,6 +36,9 @@ export class SkyTabComponent implements OnDestroy, AfterViewInit, OnChanges {
 
   @Input()
   public active: boolean;
+
+  @Input()
+  public orientation: string = 'horizontal';
 
   @ContentChildren(SkyTabComponent)
   public tabs: QueryList<SkyTabComponent>;

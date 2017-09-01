@@ -12,6 +12,9 @@ export class SkyTabsetService {
 
   public activeIndex: BehaviorSubject<any> = new BehaviorSubject(0);
 
+  public hidingTabs = new BehaviorSubject(false);
+  public showingTabs = new BehaviorSubject(false);
+
   public activateTab(tab: SkyTabComponent) {
     this.tabs.take(1).subscribe((currentTabs) => {
       this.activeIndex.next(tab.tabIndex);
@@ -85,6 +88,14 @@ export class SkyTabsetService {
     } else {
       return undefined;
     }
+  }
+
+  public tabsHidden() {
+    this.hidingTabs.next(true);
+  }
+
+  public tabsShown() {
+    this.showingTabs.next(true);
   }
 
   private getLastTabIndex(tabs: Array<SkyTabComponent>) {

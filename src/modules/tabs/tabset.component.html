@@ -15,35 +15,27 @@
 
   <div *ngIf="isVertical()" class="sky-tabset-vertical">
     <div> 
-      <sky-tab-button
+      <sky-tab-group
         *ngFor="let group of tabGroups();"
-        [tabHeading]="group.tabHeading"
-        [tabHeaderCount]="group.tabHeaderCount"
-        [tabStyle]="tabStyle"
-        [active]="group.active"
-        [allowClose]="group.allowClose"
+        [groupHeading]="group.tabHeading"
         [disabled]="group.disabled"
-        [orientation]="orientation"
-        (tabClick)="selectTab(group)"
-        (closeClick)="tabCloseClick(group)"
+        [subTabs]="subTabs(group)"
+        (tabClick)="selectTab($event)"
       >
-        <sky-tab-button
-          *ngFor="let subTab of subTabs(group);"
-          [tabHeading]="subTab.tabHeading"
-          [tabHeaderCount]="subTab.tabHeaderCount"
-          [tabStyle]="tabStyle"
-          [active]="subTab.active"
-          [allowClose]="subTab.allowClose"
-          [disabled]="subTab.disabled"
+        <!-- <sky-tab
+          *ngFor="let tab of subTabs(group);"
+          [tabHeading]="tab.tabHeading"
+          [tabHeaderCount]="tab.tabHeaderCount"
           [orientation]="orientation"
-          (tabClick)="selectTab(subTab)"
-          (closeClick)="tabCloseClick(subTab)"
         >
-        </sky-tab-button>
-      </sky-tab-button>
+        </sky-tab> -->
+      </sky-tab-group>
+
+      <!-- todo - code to support single level tabs without a group -->
     </div>
     <div *ngIf="isVertical()" #verticalTabContent></div>
   </div>
+
   <div *ngIf="!isVertical()" class="sky-tabset-tabs"> 
     <sky-tab-button
       *ngFor="let tab of tabs; let i = index"
@@ -53,12 +45,11 @@
       [active]="tab.active"
       [allowClose]="tab.allowClose"
       [disabled]="tab.disabled"
-      [orientation]="orientation"
       (tabClick)="selectTab(tab)"
       (closeClick)="tabCloseClick(tab)"
     ></sky-tab-button>
   </div>
-  <span class="sky-tabset-btns">
+  <span *ngIf="!isVertical()" class="sky-tabset-btns">
     <button
         type="button"
         class="sky-btn sky-btn-default sky-tabset-btn-new"

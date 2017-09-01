@@ -1,0 +1,30 @@
+@import '../../scss/mixins';
+
+.sky-vertical-tab {
+  cursor: pointer;
+  padding: 7px 0 7px 10px;
+  margin: 5px 5px 5px 15px;
+
+  &:hover {
+    background-color: $sky-background-color-neutral-light;
+  }
+}
+
+.sky-vertical-tab-active {
+  background-color: $sky-background-color-neutral-light;
+  color: $sky-text-color-default;
+  padding-left: 6px;
+  border-left: $sky-nav-selected-border-width solid $sky-highlight-color-info;
+}
+
+.sky-vertical-tab-hidden {
+  display: none;
+}
+
+.sky-no-outline {
+  outline: 0;
+}
+
+.sky-outline:focus {
+  @include sky-focus-outline;
+}

@@ -47,6 +47,9 @@ export class SkyTabsetComponent
   @Input()
   public orientation: string = 'horizontal';
 
+  @Input()
+  public isGroup: boolean = false;
+
   public tabDisplayMode = 'tabs';
 
   @ContentChildren(SkyTabComponent)
@@ -80,6 +83,7 @@ export class SkyTabsetComponent
   }
 
   public selectTab(newTab: SkyTabComponent) {
+    console.warn('activating tab');
     this.tabsetService.activateTab(newTab);
   }
 

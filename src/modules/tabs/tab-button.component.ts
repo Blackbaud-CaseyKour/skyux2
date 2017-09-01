@@ -4,7 +4,9 @@ import {
   Input,
   Output,
   ViewChild,
-  ElementRef
+  ElementRef,
+  QueryList,
+  ContentChildren
 } from '@angular/core';
 
 @Component({
@@ -30,9 +32,6 @@ export class SkyTabButtonComponent {
 
   @Input()
   public disabled: boolean;
-
-  @Input()
-  public orientation: string = 'horizontal';
 
   @Output()
   public tabClick = new EventEmitter<any>();
