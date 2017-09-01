@@ -79,9 +79,6 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
     this._open = value;
   }
 
-  @ContentChildren(SkyTabComponent)
-  private tabs: QueryList<SkyTabComponent>;
-
   constructor(private tabService: SkyTabsetService) {}
 
   public ngAfterViewInit() {
@@ -106,7 +103,7 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
   }
 
   public subMenuOpen(): boolean {
-    return this.tabs && (this.tabs.find(t => t.active) !== undefined);
+    return this.subTabs && (this.subTabs.find(t => t.active) !== undefined);
   }
 
   public tabsHidden = () => {
