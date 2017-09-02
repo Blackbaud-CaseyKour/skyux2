@@ -14,25 +14,30 @@
   </span>
 
   <div *ngIf="isVertical()" class="sky-tabset-vertical">
-    <div class="sky-tabset-vertical-buttons"> 
-      <sky-tab-group
-        *ngFor="let group of tabGroups();"
-        [groupHeading]="group.tabHeading"
-        [disabled]="group.disabled"
-        [subTabs]="subTabs(group)"
-        (tabClick)="selectTab($event)"
-      >
-        <!-- <sky-tab
-          *ngFor="let tab of subTabs(group);"
-          [tabHeading]="tab.tabHeading"
-          [tabHeaderCount]="tab.tabHeaderCount"
-          [orientation]="orientation"
-          (click)=selectTab(tab)
-        >
-        </sky-tab> -->
-      </sky-tab-group>
+    <div class="sky-tabset-vertical-buttons">
+      <ng-container *ngFor="let tab of tabs; let i = index;">
 
-      <!-- todo - code to support single level tabs without a group -->
+        <!-- for groups -->
+        <ng-template [ngIf]="tab && tab.isGroup()">
+          <sky-tab-group
+            [groupHeading]="tab.tabHeading"
+            [disabled]="tab.disabled"
+            [subTabs]="subTabs(tab)"
+            (tabClick)="selectTab($event)"
+          >
+          </sky-tab-group>
+        </ng-template>
+
+        <!-- for non group tabs -->
+        <ng-template [ngIf]="tab && !tab.isGroup()">
+          <sky-tab-vertical-button 
+            [tab]="tab"
+            [first]="i === 0"
+            (tabClick)="selectTab(tab)"
+          >
+          </sky-tab-vertical-button>
+        </ng-template>
+      </ng-container>
     </div>
     <div *ngIf="isVertical()" #verticalTabContent class="sky-tabset-vertical-content"></div>
   </div>

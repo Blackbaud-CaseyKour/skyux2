@@ -98,7 +98,6 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
         if (this.subTabsHaveIndexesDefined()) {
           this._loaded = true;
         }
-        console.warn(`indexes defined = ${this.subTabsHaveIndexesDefined()} open = ${this.open} group ${this.groupHeading} activeIndex = ${activeIndex}`);
       });
   }
 

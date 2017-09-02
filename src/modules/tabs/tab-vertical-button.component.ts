@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { SkyTabsetService } from './tabset.service';
+import { SkyTabComponent } from './tab.component';
 
 @Component({
   selector: 'sky-tab-vertical-button',
@@ -17,16 +18,10 @@ import { SkyTabsetService } from './tabset.service';
 export class SkyTabVerticalButtonComponent implements AfterViewInit {
 
   @Input()
-  public tabHeading: string;
+  public tab: SkyTabComponent;
 
   @Input()
-  public tabHeaderCount: string;
-
-  @Input()
-  public tabIndex: number;
-
-  @Input()
-  public disabled: boolean;
+  public first: boolean = false;
 
   @Output()
   public tabClick = new EventEmitter<any>();
@@ -39,7 +34,7 @@ export class SkyTabVerticalButtonComponent implements AfterViewInit {
   public ngAfterViewInit() {
     setTimeout(() => {
       this.tabsetService.activeIndex.subscribe((activeIndex: any) => {
-        this.active = this.tabIndex === activeIndex;
+        this.active = this.tab.tabIndex === activeIndex;
         this.ref.markForCheck();
 
         if (!this.active) {

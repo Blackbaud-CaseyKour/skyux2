@@ -3,13 +3,14 @@
   [ngClass]="{
     'sky-vertical-tab-active': active, 
     'sky-no-outline': !outline, 
-    'sky-outline': outline 
+    'sky-outline': outline,
+    'sky-vertical-tab-first': first
   }"
   (click)="tabMouseClick()"
   (keyup.enter)="tabClicked()"
   (keyup)="tabPress($event)"
   tabIndex="0"
 >
-  <div>{{ tabHeading }}</div>
+  <div>{{ tab.tabHeading }}</div>
 </div>
 

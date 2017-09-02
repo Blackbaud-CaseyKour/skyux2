@@ -24,9 +24,7 @@
   >
     <sky-tab-vertical-button 
       *ngFor="let tab of subTabs;"
-      [tabHeading]="tab.tabHeading"
-      [disabled]="tab.disabled"
-      [tabIndex]="tab.tabIndex"
+      [tab]="tab"
       (tabClick)="selectTab(tab)"
     >
     </sky-tab-vertical-button>

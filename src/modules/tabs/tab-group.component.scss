@@ -46,6 +46,7 @@
   @include sky-border(light, top);
   display: flex;
   flex-direction: column;
+  padding-top: 5px;
 }
 
 :host /deep/ .sky-tab-chevron > button {
