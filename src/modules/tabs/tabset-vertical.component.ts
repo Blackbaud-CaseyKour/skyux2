@@ -144,6 +144,7 @@ export class SkyTabsetVerticalComponent implements OnInit, AfterContentInit, OnD
     // hide tabs when switching from widescreen to mobile
     if (switchingToWidescreen) {
       this._wideScreen = true;
+      this.changeRef.detectChanges();
       this.moveActiveTabContent();
 
     } else if (switchingToMobile) {
