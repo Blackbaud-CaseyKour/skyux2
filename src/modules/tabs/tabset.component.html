@@ -1,6 +1,10 @@
 <div
     role="tablist"
-    [ngClass]="getClasses()"
+    [ngClass]="
+      'sky-tabset-mode-' + tabDisplayMode + 
+      ' sky-tabset-style-' + tabStyle + 
+      ' sky-tabset-' + orientation
+    "
     (window:resize)="windowResize()"
 >
   <span class="sky-tabset-dropdown">

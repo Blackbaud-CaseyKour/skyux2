@@ -2,11 +2,7 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output,
-  ViewChild,
-  ElementRef,
-  QueryList,
-  ContentChildren
+  Output
 } from '@angular/core';
 
 @Component({

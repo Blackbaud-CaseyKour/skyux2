@@ -18,11 +18,9 @@ import {
 } from '@angular/animations';
 
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
 
 import { SkyResourcesService } from './../resources/resources.service';
 import { SkyTabComponent } from './tab.component';
-import { SkyTabsetAdapterService } from './tabset-adapter.service';
 import { SkyTabsetService } from './tabset.service';
 import { SkyMediaQueryService } from './../media-queries/media-query.service';
 import { SkyMediaBreakpoints } from '../media-queries/media-breakpoints';
@@ -72,7 +70,6 @@ export class SkyTabsetVerticalComponent implements OnInit, AfterContentInit, OnD
   private _wideScreen: boolean;
   private _mediaSubscription: Subscription;
   private _previousTabsVisible: boolean;
-  private _ngUnsubscribe = new Subject();
   private _showTabsText: string;
 
   constructor(

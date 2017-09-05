@@ -1,10 +1,6 @@
 import {
   Component,
   Input,
-  QueryList,
-  ContentChildren,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
   AfterContentInit,
   OnDestroy,
   Output,
@@ -134,10 +130,6 @@ export class SkyTabGroupComponent implements AfterContentInit, OnDestroy {
     if (!tab.disabled) {
       this.tabClick.emit(tab);
     }
-  }
-
-  private loaded() {
-    return this._loaded && this.subTabsHaveIndexesDefined();
   }
 
   private subTabsHaveIndexesDefined() {

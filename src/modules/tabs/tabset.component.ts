@@ -12,9 +12,7 @@ import {
   QueryList,
   ChangeDetectorRef,
   SimpleChanges,
-  OnChanges,
-  ViewChildren,
-  ViewChild
+  OnChanges
 } from '@angular/core';
 
 import { SkyTabComponent } from './tab.component';
@@ -132,17 +130,6 @@ export class SkyTabsetComponent
 
   public isVertical() {
     return this.orientation === 'vertical';
-  }
-
-  public getClasses() {
-    const tabSetModeClass = `sky-tabset-mode-${this.tabDisplayMode}`;
-    const tabStyleClass = `sky-tabset-style-${this.tabStyle}`;
-
-    return {
-      tabSetModeClass: true,
-      tabStyleClass: true,
-      'sky-tabset': !this.isVertical()
-    };
   }
 
   private updateDisplayMode(currentOverflow: boolean) {
