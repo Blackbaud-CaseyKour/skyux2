@@ -52,9 +52,6 @@ import { SkyMediaBreakpoints } from '../media-queries/media-breakpoints';
 })
 export class SkyVerticalTabsetComponent implements AfterViewInit, OnInit, OnDestroy {
 
-  @ViewChild('contentWrapper')
-  public tabGroups: ElementRef;
-
   @ViewChild('skySideContent')
   public content: ElementRef;
 

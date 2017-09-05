@@ -5,7 +5,7 @@ import {
   ContentChildren,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  AfterViewInit,
+  AfterContentInit,
   OnDestroy,
   Output,
   EventEmitter
@@ -52,7 +52,7 @@ import { SkyTabsetService } from './tabset.service';
       ])
     ]
 })
-export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
+export class SkyTabGroupComponent implements AfterContentInit, OnDestroy {
 
   @Input()
   public groupHeading: string;
@@ -81,7 +81,7 @@ export class SkyTabGroupComponent implements AfterViewInit, OnDestroy {
 
   constructor(private tabService: SkyTabsetService) {}
 
-  public ngAfterViewInit() {
+  public ngAfterContentInit() {
     this.tabService.hidingTabs
       .takeUntil(this._ngUnsubscribe)
       .subscribe(this.tabsHidden);

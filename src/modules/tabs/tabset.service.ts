@@ -22,7 +22,6 @@ export class SkyTabsetService {
   }
 
   public activateTabIndex(tabIndex: string | number) {
-
     this.tabs.take(1).subscribe((currentTabs) => {
       let newSelectedTab = this.getTabFromIndex(tabIndex, currentTabs);
 

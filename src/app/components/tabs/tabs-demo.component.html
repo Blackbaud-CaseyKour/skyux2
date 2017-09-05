@@ -40,7 +40,8 @@
   >
     <sky-vertical-tab
       *ngFor="let tab of group.subTabs"
-      [tabHeading]="tab.tabHeading">
+      [tabHeading]="tab.tabHeading"
+    >
       {{tab.content}}
     </sky-vertical-tab>
   </sky-vertical-tabset-group>

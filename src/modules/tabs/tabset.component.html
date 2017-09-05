@@ -1,6 +1,6 @@
 <div
     role="tablist"
-    class="getClasses()"
+    [ngClass]="getClasses()"
     (window:resize)="windowResize()"
 >
   <span class="sky-tabset-dropdown">
@@ -15,6 +15,7 @@
 
   <sky-tabset-vertical 
     *ngIf="isVertical()"
+    [showTabsText]="showTabsText"
     [tabs]="tabs"
   ></sky-tabset-vertical>
 

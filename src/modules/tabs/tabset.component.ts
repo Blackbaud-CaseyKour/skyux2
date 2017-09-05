@@ -35,6 +35,9 @@ export class SkyTabsetComponent
   @Input()
   public active: number | string;
 
+  @Input()
+  public showTabsText: string;
+
   @Output()
   public newTab = new EventEmitter<any>();
 
