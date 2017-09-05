@@ -23,6 +23,9 @@ export class SkyTabVerticalButtonComponent implements AfterViewInit {
   @Input()
   public first: boolean = false;
 
+  @Input()
+  public disabled: boolean;
+
   @Output()
   public tabClick = new EventEmitter<any>();
 

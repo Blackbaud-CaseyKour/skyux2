@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SkyDropdownModule } from '../dropdown';
 
@@ -30,7 +31,8 @@ import { SkyTabsetVerticalComponent } from './tabset-vertical.component';
     CommonModule,
     SkyDropdownModule,
     SkyResourcesModule,
-    SkyChevronModule
+    SkyChevronModule,
+    BrowserAnimationsModule
   ],
   exports: [
     SkyTabComponent,

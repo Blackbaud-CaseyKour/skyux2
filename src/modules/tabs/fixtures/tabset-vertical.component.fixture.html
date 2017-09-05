@@ -1,0 +1,42 @@
+<h3>Vertical tabset example 2</h3>
+<sky-tabset
+  showTabsText='Tab list'
+  orientation="vertical"
+  [active]="0"
+>
+  <sky-tab 
+    tabHeading="Group 1"
+    [disabled]="group1Disabled"
+  >
+    <sky-tab tabHeading="Group 1 Tab 1">
+      Group 1 Tab 1 Content
+    </sky-tab>
+    <sky-tab tabHeading="Group 1 Tab 2">
+      Group 1 Tab 2 Content
+    </sky-tab>
+  </sky-tab>
+
+  <sky-tab 
+    tabHeading="Group 2"
+    [disabled]="group2Disabled"
+  >
+    <sky-tab tabHeading="Group 2 Tab 1">
+      Group 2 Tab 1 Content
+    </sky-tab>
+    <sky-tab tabHeading="Group 2 Tab 2">
+      Group 2 Tab 2 Content
+    </sky-tab>
+  </sky-tab>
+
+  <sky-tab 
+    tabHeading="Group 3"
+    [disabled]="group3Disabled"
+  >
+    <sky-tab tabHeading="Group 3 Tab 1">
+      Group 3 Tab 1 Content
+    </sky-tab>
+    <sky-tab tabHeading="Group 3 Tab 2">
+      Group 3 Tab 2 Content
+    </sky-tab>
+  </sky-tab>
+</sky-tabset>

@@ -8,12 +8,14 @@ import { SkyTabsModule } from '../';
 import { TabsetTestComponent } from './tabset.component.fixture';
 import { SkyWizardTestFormComponent } from './tabset-wizard.component.fixture';
 import { TabsetActiveTestComponent } from './tabset-active.component.fixture';
+import { TabsetVerticalTestComponent } from './tabset-vertical.component.fixture';
 
 @NgModule({
   declarations: [
     TabsetTestComponent,
     SkyWizardTestFormComponent,
-    TabsetActiveTestComponent
+    TabsetActiveTestComponent,
+    TabsetVerticalTestComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { TabsetActiveTestComponent } from './tabset-active.component.fixture';
   exports: [
     TabsetTestComponent,
     SkyWizardTestFormComponent,
-    TabsetActiveTestComponent
+    TabsetActiveTestComponent,
+    TabsetVerticalTestComponent
   ],
   entryComponents: [
     SkyWizardTestFormComponent

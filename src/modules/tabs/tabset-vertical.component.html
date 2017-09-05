@@ -23,6 +23,7 @@
         <sky-tab-vertical-button 
           [tab]="tab"
           [first]="i === 0"
+          [disabled]="tab.disabled"
           (tabClick)="selectTab(tab)"
         >
         </sky-tab-vertical-button>

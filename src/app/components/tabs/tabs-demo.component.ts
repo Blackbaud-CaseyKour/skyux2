@@ -11,6 +11,10 @@ export class SkyTabsDemoComponent {
 
   public activeTabIndex: any = 0;
 
+  public group1Disabled: boolean = false;
+  public group2Disabled: boolean = false;
+  public group3Disabled: boolean = true;
+
   constructor() {
     this.tabs = [
       {
@@ -48,7 +52,6 @@ export class SkyTabsDemoComponent {
     this.groups = [
       {
         heading: 'Group 1',
-        isOpen: true,
         isDisabled: false,
         subTabs: [
           { tabHeading: 'Group 1 - Tab 1', content: 'Group 1 - Tab 1 Content'},
@@ -56,7 +59,6 @@ export class SkyTabsDemoComponent {
       },
       {
         heading: 'Group 2',
-        isOpen: false,
         isDisabled: false,
         subTabs: [
           { tabHeading: 'Group 2 - Tab 1', content: 'Group 2 - Tab 1 Content'},
@@ -64,9 +66,10 @@ export class SkyTabsDemoComponent {
       },
       {
         heading: 'Disabled',
-        isOpen: false,
         isDisabled: true,
-        subTabs: []
+        subTabs: [
+          { tabHeading: 'Group 3 - Tab 1', content: 'Group 3 - Tab 1 Content'},
+          { tabHeading: 'Group 3 - Tab 2', content: 'Group 3 - Tab 2 Content'}]
       }
     ];
   }
