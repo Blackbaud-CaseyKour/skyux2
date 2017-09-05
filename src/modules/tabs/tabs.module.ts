@@ -13,6 +13,7 @@ import { SkyTabGroupComponent } from './tab-group.component';
 import { SkyResourcesModule } from '../resources';
 import { SkyChevronModule } from './../chevron/chevron.module';
 import { SkyTabVerticalButtonComponent } from './tab-vertical-button.component';
+import { SkyTabsetVerticalComponent } from './tabset-vertical.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SkyTabVerticalButtonComponent } from './tab-vertical-button.component';
     SkyTabsetComponent,
     SkyTabsetNavButtonComponent,
     SkyTabGroupComponent,
-    SkyTabVerticalButtonComponent
+    SkyTabVerticalButtonComponent,
+    SkyTabsetVerticalComponent
   ],
   imports: [
     CommonModule,

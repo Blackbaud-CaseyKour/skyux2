@@ -55,9 +55,6 @@ export class SkyTabsetComponent
   @ContentChildren(SkyTabComponent)
   public tabs: QueryList<SkyTabComponent>;
 
-  @ViewChild('verticalTabContent')
-  public content: ElementRef;
-
   constructor(
     private tabsetService: SkyTabsetService,
     private adapterService: SkyTabsetAdapterService,
@@ -105,8 +102,6 @@ export class SkyTabsetComponent
             this.activeChange.emit(newActiveIndex);
           }
         });
-
-        this.moveActiveTabContent();
     });
   }
 
@@ -136,35 +131,6 @@ export class SkyTabsetComponent
     return this.orientation === 'vertical';
   }
 
-  public nonGroupTabs() {
-    let groups = this.tabs.filter(tab => tab.isGroup());
-
-    if (groups && groups.length > 0) {
-      let subTabs: SkyTabComponent[] =
-        groups
-          .map(tab => tab.tabs.toArray())
-          .reduce((prev, current) => prev.concat(current))
-          .filter(tab => !tab.isGroup());
-
-      return subTabs;
-    } else {
-      return undefined;
-    }
-  }
-
-  public tabGroups() {
-    let groups = this.tabs.filter(tab => tab.isGroup());
-    return groups;
-  }
-
-  public subTabs(item: SkyTabComponent) {
-    if (item && item.tabs) {
-      return item.tabs.toArray().slice(1, item.tabs.length);
-    } else {
-      return undefined;
-    }
-  }
-
   public getClasses() {
     const tabSetModeClass = `sky-tabset-mode-${this.tabDisplayMode}`;
     const tabStyleClass = `sky-tabset-style-${this.tabStyle}`;
@@ -178,15 +144,5 @@ export class SkyTabsetComponent
 
   private updateDisplayMode(currentOverflow: boolean) {
     this.tabDisplayMode = currentOverflow ? 'dropdown' : 'tabs';
-  }
-
-  private moveActiveTabContent() {
-    if (this.isVertical()) {
-      // add active tab content to side div
-      let activeContent = this.tabsetService.activeTabContent();
-      if (activeContent) {
-        this.content.nativeElement.appendChild(activeContent.nativeElement);
-      }
-    }
   }
 }
