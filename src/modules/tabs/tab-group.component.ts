@@ -89,9 +89,8 @@ export class SkyTabGroupComponent implements AfterContentInit, OnDestroy {
     this.tabService.activeIndex
       .takeWhile(() => !this._loaded)
       .subscribe(activeIndex => {
-        this.open = this.subMenuOpen();
-
         if (this.subTabsHaveIndexesDefined()) {
+          this.open = this.subMenuOpenFromIndex(activeIndex);
           this._loaded = true;
         }
       });
@@ -110,6 +109,10 @@ export class SkyTabGroupComponent implements AfterContentInit, OnDestroy {
 
   public subMenuOpen(): boolean {
     return this.subTabs && (this.subTabs.find(t => t.active) !== undefined);
+  }
+
+  public subMenuOpenFromIndex(activeIndex: number): boolean {
+    return this.subTabs && (this.subTabs.find(t => t.tabIndex === activeIndex) !== undefined);
   }
 
   public tabsHidden = () => {
