@@ -107,7 +107,7 @@ export class SkyTabsetComponent
   }
 
   public ngAfterViewInit() {
-    this.adapterService.init(this.elRef);
+    this.adapterService.init(this.elRef, this.orientation);
 
     this.adapterService.overflowChange.subscribe((currentOverflow: boolean) => {
       this.updateDisplayMode(currentOverflow);

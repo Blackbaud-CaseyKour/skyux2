@@ -12,8 +12,8 @@ export class SkyTabsetAdapterService {
 
   private bntsEl: HTMLElement;
 
-  public init(elRef: ElementRef) {
-    this.el = elRef.nativeElement.querySelector('.sky-tabset');
+  public init(elRef: ElementRef, orientation: string) {
+    this.el = elRef.nativeElement.querySelector(`.sky-tabset-${orientation}`);
     this.tabsEl = elRef.nativeElement.querySelector('.sky-tabset-tabs');
     this.bntsEl = elRef.nativeElement.querySelector('.sky-tabset-btns');
 
